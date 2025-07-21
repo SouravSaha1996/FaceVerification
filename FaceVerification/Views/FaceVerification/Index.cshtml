@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+<form asp-action="Login" enctype="multipart/form-data" method="post">
+    <input type="file" name="uploadedImage" accept="image/*" required />
+    <button type="submit">Login with Face</button>
+</form>
+

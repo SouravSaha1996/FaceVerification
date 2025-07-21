@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Face Verification";
+}
+
+<h2>Face Verification</h2>
+
+<div id="successDiv" class="alert alert-success d-flex align-items-center d-none" role="alert">
+    <span class="fas fa-check-circle text-success fs-3 me-3"></span>
+    <p class="mb-0 flex-1" id="successAlert">Face matched successfully</p>
+</div>
+<div id="errorDiv" class="alert alert-danger d-flex align-items-center d-none" role="alert">
+    <span class="fas fa-times-circle text-danger fs-3 me-3"></span>
+    <p class="mb-0 flex-1" id="errorAlert">Face does not match</p>
+</div>
+
+<div class="col-4 form-group px-1">
+    <img id="ImgPriview" class="img-fluid" src="~/images/NoImage.jpeg" onclick="zoomImg(this, 'ImgPriview');" />
+    <div class="row mx-auto px-0">
+        <div class="col-6 px-1">
+            <label for="ImgCamera" title="Camara" class="col-12">
+                <span class="btn btn-primary col-12 px-3 py-1"><i class="fa fa-camera fs-2"></i> </span>
+                <input class="d-none" id="ImgCamera" type="file" accept="image/*" capture="environment" onchange="OpenCamera('ImgPriview', 'ImgCamera');" />
+            </label>
+        </div>
+        <div class="col-6 px-1">
+            <button class="btn btn-primary p-1 col-12" onclick="RemoveImg('ImgPriview', 'ImgCamera');"><i class="fas fa-trash fs-2"></i></button>
+        </div>
+    </div>
+    <br />
+    <button class="btn btn-success py-1" type="button" onclick="ValidateFace();">
+        <span class="fas fa-save fw-bold"></span> Validate
+    </button>
+</div>
+
+<script src="~/js/face.js"></script>
