@@ -16,7 +16,6 @@
     <PackageReference Include="FaceAiSharp.Bundle" Version="0.5.23" />
     <PackageReference Include="FaceAiSharp.Models.ArcFace.LResNet100E-IR" Version="0.20220210.3" />
     <PackageReference Include="FaceAiSharp.Models.Scrfd.2dot5g_kps" Version="0.20230205.2" />
-    <PackageReference Include="FaceRecognitionDotNet" Version="1.3.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.18" />
     <PackageReference Include="Microsoft.ML.OnnxRuntime" Version="1.22.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />

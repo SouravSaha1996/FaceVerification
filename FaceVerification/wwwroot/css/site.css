@@ -20,3 +20,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+@media (max-width: 575px) {
+    .d-web {
+        display: none !important;
+    }
+}

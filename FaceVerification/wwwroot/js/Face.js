@@ -1,16 +1,30 @@
 ﻿var ModelData = {
+    UserId: 0,
     ImgData: null,
     ImgType: null,
     ImageName: null,
     ImageUrl: null
 };
 
-var DefaultImgUrl = "";
+var DefaultImgUrl = "", video = null, canvas = null, photo = null;
 
 jQuery(document).ready(function () {
     "use strict";
     DefaultImgUrl = '/images/NoImage.jpeg';
+
+    video = document.getElementById('video');
+    canvas = document.getElementById('canvas');
+    photo = document.getElementById('ImgPriview');
 });
+
+// Capture the photo
+function TakePhoto() {
+    const context = canvas.getContext('2d');
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const imageDataURL = canvas.toDataURL('image/png');
+    photo.src = imageDataURL;
+    ModelData.ImgData = imageDataURL.split(',')[1];
+}
 function ConvertFileToBase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -20,20 +34,38 @@ function ConvertFileToBase64(file) {
     });
 }
 
-async function OpenCamera(ImageId, CameraID) {
-    let img = jQuery(`#${CameraID}`);
-    jQuery(`#${ImageId}`).attr("src", window.URL.createObjectURL(img[0].files[0]));
+function OpenCameraWeb() {
+    jQuery('#video').removeClass('d-none');
+    const constraints = {
+        video: true
+    };
+
+    // Open the camera
+    navigator.mediaDevices.getUserMedia(constraints)
+        .then((stream) => {
+            video.srcObject = stream;
+        })
+        .catch((error) => {
+            console.error('Camera error:', error);
+        });
+}
+
+async function OpenCameraMob() {
+    let img = jQuery(`#ImgCamera`);
+    jQuery(`#ImgPriview`).attr("src", window.URL.createObjectURL(img[0].files[0]));
     ModelData.ImgData = await ConvertFileToBase64(img[0].files[0]);
     ModelData.ImgType = img[0].files[0].type.split('/')[1];
 }
-function RemoveImg(ImageId, CameraID) {
-    jQuery(`#${CameraID}`).val('');
+
+function RemoveImg() {
+    jQuery('#video').addClass('d-none');
+    jQuery(`#ImgCamera`).val('');
     ModelData.ImgData = "";
-    jQuery(`#${ImageId}`).attr('src', DefaultImgUrl);
+    jQuery(`#ImgPriview`).attr('src', DefaultImgUrl);
 }
 
-
 function ValidateFace() {
+    ModelData.UserId = jQuery('#UserId').val();
     Swal.fire({
         title: 'Loading...',
         html: 'Please wait...',

@@ -1,7 +1,8 @@
 ﻿namespace FaceVerification.Models
 {
-    public class Face
+    public class FaceModal
     {
+        public string UserId { get; set; }
         public string ImgData { get; set; }
         public string ImgType { get; set; }
         public string ImageName { get; set; }

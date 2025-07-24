@@ -23,12 +23,12 @@ namespace FaceVerification.Controllers
         public IActionResult ValidateFace(string modelParameter)
         {
             string data = string.Empty;
-            Face Model = JsonConvert.DeserializeObject<Face>(modelParameter) ?? new Face();
+            FaceModal Model = JsonConvert.DeserializeObject<FaceModal>(modelParameter) ?? new FaceModal();
 
             if (String.IsNullOrEmpty(Model.ImgData))
                 return View((object)"No file selected");
 
-            var knownPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/faces/user1.jpg");
+            var knownPath = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/faces/user{Model.UserId}.jpg");
             if (!System.IO.File.Exists(knownPath))
                 return View((object)"Known image missing");
             IFormFile uploadedPhoto = Base64ToIFormFile(Model.ImgData);
