@@ -7,7 +7,7 @@
   "parameters": {
     "resourceGroupName": {
       "type": "string",
-      "defaultValue": "learn-46c57a7a-4b90-4c51-8b11-3efbcda219cf",
+      "defaultValue": "learn-1453b099-6445-45bb-8be3-39710f8f2db3",
       "metadata": {
         "description": "Name of the resource group for the resource. It is recommended to put resources under same resource group for better tracking."
       }
@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "FaceVerification20250723205837",
+      "defaultValue": "FaceVerification20250724233215",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }
